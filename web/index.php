@@ -56,41 +56,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<i class="icon-bar"></i>
 							</button>				  
 							<div class="navbar-brand">
-								<h1><a href="index.html">Planet Hosting</a></h1>
+								<h1><a href="index.php">Planet Hosting</a></h1>
 							</div>
 						</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="index.html">Home <i class="sr-only">(current)</i></a></li>
-								<li><a href="about.html">About</a></li>
+								<li class="active"><a href="index.php">Home <i class="sr-only">(current)</i></a></li>
+								<li><a href="about.php">About</a></li>
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<i class="caret"></i></a>
 										<ul class="dropdown-menu">
-											<li><a href="blog.html">Blog</a></li>
-											<li><a href="pricing.html">Pricing</a></li>
-											<li><a href="faq.html">FAQ's</a></li>
-											<li><a href="testimonials.html">Testimonials</a></li>
-											<li><a href="history.html">History</a></li>
-											<li><a href="support.html">Support</a></li>
-											<li><a href="templatesetting.html">Template setting</a></li>
-											<li><a href="login.html">Login</a></li>
-											<li><a href="portfolio.html">Portfolio</a></li>
+											<li><a href="blog.php">Blog</a></li>
+											<li><a href="pricing.php">Pricing</a></li>
+											<li><a href="faq.php">FAQ's</a></li>
+											<li><a href="testimonials.php">Testimonials</a></li>
+											<li><a href="history.php">History</a></li>
+											<li><a href="support.php">Support</a></li>
+											<li><a href="templatesetting.php">Template setting</a></li>
+											<li><a href="login.php">Login</a></li>
+											<li><a href="portfolio.php">Portfolio</a></li>
 										</ul>
 									</li>
-								<li><a href="services.html">Services</a></li>
+								<li><a href="services.php">Services</a></li>
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 									<ul class="dropdown-menu">
-										<li><a href="linuxhosting.html">Linux hosting</a></li>
-										<li><a href="wordpresshosting.html">WordPress Hosting</a></li>
-										<li><a href="windowshosting.html">Windows Hosting</a></li>
-										<li><a href="cmshosting.html">CMS Hosting</a></li>
+										<li><a href="linuxhosting.php">Linux hosting</a></li>
+										<li><a href="wordpresshosting.php">WordPress Hosting</a></li>
+										<li><a href="windowshosting.php">Windows Hosting</a></li>
+										<li><a href="cmshosting.php">CMS Hosting</a></li>
 									</ul>			
 								</li>
-								<li><a href="codes.html">Codes</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="codes.php">Codes</a></li>
+								<li><a href="contact.php">Contact</a></li>
 							</ul>
 									  
 						</div><!-- /.navbar-collapse -->
@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="col-md-6 banner-grid">
 						<h3>Unlimited Web Hosting</h3>
 						<p>this hero area to show off some of your nice work. You can even have a video inside it since it’s great as a secondary call to action alongside this button underneath this text.</p>
-						<a href="single.html" class="button">get started</a>
+						<a href="single.php" class="button">get started</a>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -395,18 +395,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h5>We like to keep everyone updated</h5>
 							<div class="post-grids">
 								<div class="col-md-4 post-grid">
-									<a href="single.html" class="mask"><img src="images/p1.jpg" class="img-responsive zoom-img" alt="/"></a>
-									<a href="single.html"><h4>Vestibulum ipsums eros</h4></a>
+									<a href="single.php" class="mask"><img src="images/p1.jpg" class="img-responsive zoom-img" alt="/"></a>
+									<a href="single.php"><h4>Vestibulum ipsums eros</h4></a>
 									<p>We strive to deliver the very best possible work that’s available out there, at any time. That’s how we set ourselves apart from the competition.</p>
 								</div>
 								<div class="col-md-4 post-grid">
-									<a href="single.html" class="mask"><img src="images/p2.jpg" class="img-responsive zoom-img" alt="/"></a>
-									<a href="single.html"><h4>Vestibulum ipsums eros</h4></a>
+									<a href="single.php" class="mask"><img src="images/p2.jpg" class="img-responsive zoom-img" alt="/"></a>
+									<a href="single.php"><h4>Vestibulum ipsums eros</h4></a>
 									<p>We strive to deliver the very best possible work that’s available out there, at any time. That’s how we set ourselves apart from the competition.</p>
 								</div>
 								<div class="col-md-4 post-grid">
-									<a href="single.html" class="mask"><img src="images/p3.jpg" class="img-responsive zoom-img" alt="/"></a>
-									<a href="single.html"><h4>Vestibulum ipsums eros</h4></a>
+									<a href="single.php" class="mask"><img src="images/p3.jpg" class="img-responsive zoom-img" alt="/"></a>
+									<a href="single.php"><h4>Vestibulum ipsums eros</h4></a>
 									<p>We strive to deliver the very best possible work that’s available out there, at any time. That’s how we set ourselves apart from the competition.</p>
 								</div>
 								<div class="clearfix"></div>
