@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+error_reporting(0);
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,17 +62,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="main-1">
 		<div class="container">
         <div class="register">
-                <form action="account.php" method="post" onsubmit="return(validateForm());"> 
+                <form  method="post" id="signup"> 
                     <div class="register-top-grid">
                         <h3>personal information</h3>
                         <h5 style="color:red;">* mandatory fields</h5>
                         <div>
                             <span>Name<label>*</label></span>
-                            <input type="text" name="name" id="name" required="" class="form-control"> 
+                            <input type="text" name="name" id="name"  required="" class="form-control"> 
                         </div>
                         <div>
                             <span>Email Address<label>*</label></span>
-                            <input type="email" name="email" id="email" required="" class="form-control"> 
+                            <input type="email" name="email" id="email" required="" value="<?php if(isset($_SESSION['email'])){echo $_SESSION['email'];}?>" class="form-control"> 
                         </div>
                         <div>
                             <span>Security Question<label>*</label></span>
@@ -77,7 +87,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <div>
                             <span>Mobile  (minimum 10 digits required)<label>*</label></span>
-                            <input type="number" name="mobile" id="mobile" required="" class="form-control"> 
+                            <input type="number" name="mobile" id="mobile" required="" value="<?php if(isset($_SESSION['mnumber'])){echo $_SESSION['mnumber'];}?>" class="form-control"> 
                         </div>
                         <div id="answer-signup">
                             <span>ANSWER<label>*</label></span>
@@ -119,3 +129,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- login --><?php include "footer.php";?>
 </body>
 </html>
+<script src="ajax.js"></script> 

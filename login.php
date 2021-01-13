@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+error_reporting(0);
+if(isset($_SESSION['uname']))
+{
+	header("location:index.php");
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,14 +68,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="col-md-6 login-right">
 									<h3>registered</h3>
 									<p>If you have an account with us, please log in.</p>
-									<form>
+									<form id="login">
 									  <div>
 										<span>Email Address<label>*</label></span>
-										<input type="text"> 
+										<input type="text" name="username"> 
 									  </div>
 									  <div>
 										<span>Password<label>*</label></span>
-										<input type="password"> 
+										<input type="password" name="pass"> 
 									  </div>
 									  <a class="forgot" href="#">Forgot Your Password?</a>
 									  <input type="submit" value="Login">
@@ -79,3 +91,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <?php include "footer.php";?>
 </body>
 </html>
+<script src="ajax.js"></script>
