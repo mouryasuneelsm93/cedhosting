@@ -1,91 +1,103 @@
 <?php
+require_once("config.php");
 session_start();
-error_reporting(0);
-global $user1,$pass;
-$name=$_POST['name'];
-$email=$_POST['email'];
-$sq=$_POST['securityquestion'];
-$mobile=$_POST['mobile'];
-$answer=$_POST['answer'];
-$pass=$_POST['pass'];
-$user=$_POST['username'];
-$passwords=$_POST['password'];
-// echo $name."\n".$email."\n".$sq."\n".$mobile."\n".$answer."\n".$password;
-$obj=new tbl_user;
 
-if($user)
+class User extends dbcon
 {
-    $obj->login();
-}
-else
-{
-    $obj->user();
-}
-class tbl_user
-{
-    function login()
+    public $con;
+    public $user;
+    public $pass;
+    public $name;
+    public $email;
+    public $sq;
+    public $mobile;
+    public $answer;
+    public $passwords;
+    public $phone_approved;
+    public $email_approved;
+    
+    function __construct()
     {
-        global $user,$pass;
-        include "connect.php";
-        $sql="SELECT *from tbl_user where mobile='$user' or email='$user'";
-        $result = $con->query($sql);
-        if ($result->num_rows > 0) {
-         
-          while($row = $result->fetch_assoc()) {
-            //  echo $row["id"].$row["email"].$row["name"];
-            $_SESSION['uname']=$row['name'];
-           
-            if($row['is_admin']==1)
-            {
-               
-                echo "2";
-            }
-            // echo $_SESSION['uname'];
-            else
-            {
-              
-                echo "1";
-            }
-           
-            
-          }
-         
-        } else {
-          echo "0 results";
-        }
-        $con->close();
-   
+        $obj=new dbcon;
+        $this->con=$obj->con;
     }
-    function user()
+    function login($user,$pass)
     {
-        global $name,$email,$sq,$mobile,$answer,$passwords;
-        include "connect.php";
-        if(isset($_SESSION['email']))
-        {
-            $ep=1;
-            $mp=0;
+        $this->user=$user;
+        $this->pass=$pass;
+        $sql="SELECT *from tbl_user where email='$this->user' AND password='$this->pass'";
+        $result =$this->con->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if ($row['is_admin']==1) {
+                    $_SESSION['admin']=$row['name'];
+                    $res="1";
+                } else {
+                    $_SESSION['user']=$row['name'];
+                    $res="0";
+                }
+            }
+        } else {
+            return "0 results";
         }
-
-        else 
+        return $res;
+    }
+    function insert($name,$email,$sq,$mobile,$answer,$passwords,$phone_approved,$email_approved)
+    {
+        $this->name=$name;
+        $this->email=$email;
+        $this->sq=$sq;
+        $this->mobile=$mobile;
+        $this->answer=$answer;
+        $this->passwords=$passwords;
+        $this->phone_approved=$phone_approved;
+        $this->email_approved=$email_approved;
+        
+        $sql="INSERT into tbl_user(email,name,mobile,email_approved,phone_approved,active,is_admin,password,security_question,security_answer)
+         VALUES('$this->email','$this->name','$this->mobile','$this->phone_approved','$this->email_approved',1,0,'$this->passwords','$this->sq','$this->answer')";
+        if($this->con->query($sql)==true)
         {
-            $ep=0;
-            $mp=1;
-        }
-        $sql="INSERT into tbl_user(email,name,mobile,email_approved,phone_approved,active,is_admin,password,security_question,security_answer) VALUES('$email','$name','$mobile','$ep','$mp',1,0,'$passwords','$sq','$answer')";
-        if($con->query($sql)==true)
-        {
-            echo "1";
+            $res= "1";
             
         } 
         else 
         {
-            echo "0";
+            $res= "0";
         }
+        return $res; 
     }
+    
 }
 
-
-
+class linux extends dbcon
+{
+    function title()
+    {
+        
+        $titlename=mysqli_fetch_assoc($this->con->query("SELECT `prod_name` FROM `tbl_product` where `id`=2"));
+        return $titlename;
+    }
+    function linuxhosting()
+    {
+        
+        $sql="SELECT * from tbl_prod_description";
+        $result=$this->con->query($sql);
+        if($result->num_rows>0)
+        {
+            while($res=$result->fetch_assoc())
+            {
+                $a= $res['pid'];
+                
+            }   
+            return $a;
+        }
+        else 
+        {
+            return 0;
+        }
+        $this->con->close();
+    }
+}
 
 
 ?>

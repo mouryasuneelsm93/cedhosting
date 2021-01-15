@@ -63,7 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="col-md-6 login-left">
 									 <h3>new customers</h3>
 									 <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-									 <a class="acount-btn" href="account.php">Create an Account</a>
+									 <a class="acount-btn" href="verification.php">Create an Account</a>
 								</div>
 								<div class="col-md-6 login-right">
 									<h3>registered</h3>
@@ -71,11 +71,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<form id="login">
 									  <div>
 										<span>Email Address<label>*</label></span>
-										<input type="text" name="username"> 
+										<input type="text" name="username" required> 
 									  </div>
 									  <div>
 										<span>Password<label>*</label></span>
-										<input type="password" name="pass"> 
+										<input type="password" name="pass" required> 
 									  </div>
 									  <a class="forgot" href="#">Forgot Your Password?</a>
 									  <input type="submit" value="Login">

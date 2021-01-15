@@ -52,7 +52,13 @@ function egenerate()
         })
     }
 }
+
+$(document).ready(function()
+{
+    $('#myTable').DataTable();
+})
 $(document).ready(function(){
+    
     $('#verification').submit(function(e){
     e.preventDefault();
     $.ajax({
@@ -86,8 +92,8 @@ $('#signup').submit(function(e){
     {
     $.ajax({
         type:'POST',
-        url:'tbl_user.php',
-        data:$(this).serialize(),
+        url:'helper.php',
+        data:$(this).serialize()+"&action=signup",
         success:function(data){
             console.log(data);
             if(data==1)
@@ -106,19 +112,18 @@ $('#signup').submit(function(e){
 })
 $('#login').submit(function(e){
     e.preventDefault();
-   
     $.ajax({
         type:'POST',
-        url:'tbl_user.php',
-        data:$(this).serialize(),
+        url:'helper.php',
+        data:$(this).serialize()+"&action=login",
         success:function(data){
             console.log(data);
-            if(data==1)
+            if(data==0)
             {
                 alert("login successfully");
                 window.location.href="index.php";
             }
-            else if(data==2)
+            else if(data==1)
             {
                 
                 window.location.href="admin/index.php";
@@ -135,17 +140,106 @@ $('#login').submit(function(e){
 
 $('#create').submit(function(e){
     e.preventDefault();
-   
+
     $.ajax({
         type:'POST',
-        url:'create.php',
-        data:$(this).serialize(),
+        url:'adminhelper.php',
+        data:$(this).serialize()+"&action=edit",
         success:function(data){
             console.log(data);
+            if(data==1)
+            {
+                alert("product add");
+                window.location.href="../admin/createcategory.php";
+            }
         
+            else
+            {
+                alert("wrong");
+            }
 
         }
     })
 
 })
+$('#update').submit(function(e){
+    e.preventDefault();
+     var prod_id = $("#sp").html();
+    
+    // console.log(id);
+    $.ajax({
+        type:'POST',
+        url:'adminhelper.php',
+        data:$(this).serialize()+"&action=update"+"&id="+prod_id,
+        success:function(data){
+            console.log(data);
+            if(data==1)
+            {
+                alert("update successfully");
+                window.location.href="../admin/index.php";
+            }
+        
+            else
+            {
+                alert("wrong");
+            }
+
+        }
+    })
+
+})
+
+
+
+$('.del').on('click',function()
+{
+    var x=confirm("Are you sure you want to delete");
+    if(x==true)
+    {
+        var id = $(this).data('id');
+        console.log(id);
+        $.ajax({
+            type:'post',
+            data:{'prod_id':id,'action':'del'},
+            url:'adminhelper.php',
+            success:function(data){
+                console.log(data);
+            }
+        })
+    }
+   else
+   {
+
+   }
+    
+});
+
+
+$('.edit').on('click',function()
+{
+    var id = $(this).data('id');
+    var name = $(this).data('name');
+    var link = $(this).data('link');
+    console.log(id,name,link);
+    document.getElementById("sp").innerHTML=id;
+    document.getElementById("uproductname").value=name;
+    document.getElementById("ueditor").value=link;
+    
+})
+
+
+$('#addproduct').submit(function(e){
+    e.preventDefault();
+   
+    $.ajax({
+        type:'POST',
+        url:'adminhelper.php',
+        data:$(this).serialize()+"&action=addproduct",
+        success:function(data){
+            console.log(data);
+
+        }
+    })
+})
+
 })

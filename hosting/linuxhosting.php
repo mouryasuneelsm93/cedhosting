@@ -1,9 +1,4 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -33,7 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<!---header--->
-	<?php include "header.php";?>
+	<?php include "../header.php";?>
 	<!---header--->
 		<!---singleblog--->
 				<div class="content">
@@ -41,7 +36,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="container">
 							<div class="linux-grids">
 								<div class="col-md-8 linux-grid">
-								<h2>Linux Hosting</h2>
+								<h2><?php
+
+require_once("../tbl_user.php");
+$obj=new linux;
+$result=$obj->title();
+echo $result['prod_name'];
+$result1=$obj->linuxhosting();
+echo $result1;
+
+?></h2>
 								<ul>
 									<li><span>Unlimited </span> Domains, Disk Space, Bandwidth and Email Addresses</li>
 									<li><span>99.9% uptime </span> with dedicated 24/7 technical support</li>
@@ -70,7 +74,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<div class="linux-prices">
 											<div class="col-md-3 linux-price">
 												<div class="linux-top">
-												<h4>Standard</h4>
+												<h4><?php
+
+require_once("../tbl_user.php");
+$obj=new linux;
+
+$result1=$obj->linuxhosting();
+echo $result1;
+
+?></h4>
 												</div>
 												<div class="linux-bottom">
 													<h5>$279 <span class="month">per month</span></h5>
@@ -86,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												</div>
 												<a href="#">buy now</a>
 											</div>
-											<div class="col-md-3 linux-price">
+											<!-- <div class="col-md-3 linux-price">
 												<div class="linux-top">
 												<h4>Advanced</h4>
 												</div>
@@ -139,7 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													</ul>
 												</div>
 												<a href="#">buy now</a>
-											</div>
+											</div> -->
 											<div class="clearfix"></div>
 										</div>
 									</div>
@@ -313,7 +325,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				</div>
 			<!---footer--->
-			<?php include "footer.php";?>
+			<?php include "../footer.php";?>
 			<!---footer--->
 			
 			

@@ -33,7 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<!---header--->
-	<?php include "header.php";?>
+	<?php include "../header.php";?>
 	<!---header--->
 		<!---singleblog--->
 				<div class="content">
@@ -313,7 +313,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				</div>
 			<!---footer--->
-			<?php include "footer.php";?>
+			<?php include "../footer.php";?>
 			<!---footer--->
 			
 			
