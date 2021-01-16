@@ -69,7 +69,7 @@ class User extends dbcon
     
 }
 
-class linux extends dbcon
+class linux extends User
 {
     function title()
     {
@@ -77,26 +77,7 @@ class linux extends dbcon
         $titlename=mysqli_fetch_assoc($this->con->query("SELECT `prod_name` FROM `tbl_product` where `id`=2"));
         return $titlename;
     }
-    function linuxhosting()
-    {
-        
-        $sql="SELECT * from tbl_prod_description";
-        $result=$this->con->query($sql);
-        if($result->num_rows>0)
-        {
-            while($res=$result->fetch_assoc())
-            {
-                $a= $res['pid'];
-                
-            }   
-            return $a;
-        }
-        else 
-        {
-            return 0;
-        }
-        $this->con->close();
-    }
+   
 }
 
 

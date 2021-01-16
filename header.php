@@ -1,4 +1,10 @@
+<?php
+require "config.php";
+require 'admin/product.php';
+$obj =new Product;
+$result=$obj->hosting();
 
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -23,29 +29,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
+  <script src="ajax.js"></script>
 </head>
 <body>
 	
-	<?php
-	session_start();
-	$servername="localhost";
-$username="root";
-$password="";
-$dbname = "cedhosting";
-
-$con=mysqli_connect($servername,$username,$password,$dbname);
-
-if(!$con)
-{
-die("connection failed".mysqli_connect_error());
-}
-	$sql="SELECT *from tbl_product where prod_parent_id=1";
-	$result = $con->query($sql);
 	
-	
-    if (!isset($_SESSION['user'])) {
-        echo '<div class="header">
+       <div class="header">
 			<div class="container">
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
@@ -72,17 +61,12 @@ die("connection failed".mysqli_connect_error());
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 									<ul class="dropdown-menu">
-										'; 
-										if ($result->num_rows > 0) {
-											// output data of each row
-											while($row = $result->fetch_assoc()) {
-											  echo  '<li><a href=/hosting/hosting/'. $row["html"].'.php'.">".$row["prod_name"]."</a></li>";
-											}
-										  } else {
-											echo "0 results";
-										  }
-										  $con->close();
-										echo '
+									<?php foreach($result as $key=>$value): ?>
+                                <?php if (!($value['prod_name']=='Hosting')) :?>
+                                <li><a href="linuxhosting.php?id=<?php echo $value['id'];?>"><?php echo $value['prod_name']?></a>
+                                </li>
+                                <?php endif; ?>
+                                <?php endforeach;?>
 									</ul>			
                                 </li>
                                 <li><a href="blog.php">Blog</a></li>
@@ -95,70 +79,7 @@ die("connection failed".mysqli_connect_error());
 					</div><!-- /.container-fluid -->
 				</nav>
 			</div>
-		</div>';
-    }
-	else
-	{
-       
-	echo '<div class="header">
-	<div class="container">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-	<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<i class="sr-only">Toggle navigation</i>
-						<i class="icon-bar"></i>
-						<i class="icon-bar"></i>
-						<i class="icon-bar"></i>
-					</button>				  
-					<div class="navbar-brand">
-						<h1><a href="index.php">Planet Hosting</a></h1>
-					</div>
-				</div>
-
-	<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="index.php">Home <i class="sr-only">(current)</i></a></li>
-						<li><a href="about.php">About</a></li>
-						
-						<li><a href="services.php">Services</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
-							<ul class="dropdown-menu">
-								'; 
-								if ($result->num_rows > 0) {
-									// output data of each row
-									while($row = $result->fetch_assoc()) {
-									  echo  '<li><a href='.'/hosting/hosting/'. $row["html"].">".$row["prod_name"]."</a></li>";
-									}
-								  } else {
-									echo "0 results";
-								  }
-								  $con->close();
-								echo '
-							</ul>			
-						</li>
-						<li><a href="blog.php">Blog</a></li>
-                                <li><a href="contact.php">Contact</a></li>
-								<li><a href="codes.php"><i class="fas fa-shopping-cart" aria-hidden="true"></i></a></li>
-								<li class="dropdown"><a href="" data-toggle="dropdown">'.$_SESSION['user'].'</a>
-								
-								<ul class="dropdown-menu">
-										<li><a href="changepassword.php">Change Password</a></li>
-										<li><a href="logout.php">Logout</a></li>
-										
-									</ul>		
-								</li>
-					</ul>
-							  
-				</div><!-- /.navbar-collapse -->
-			</div><!-- /.container-fluid -->
-		</nav>
-	</div>
-</div>';
-								}
-	?>
+		</div>
+    
 </body>
 </html>

@@ -237,9 +237,53 @@ $('#addproduct').submit(function(e){
         data:$(this).serialize()+"&action=addproduct",
         success:function(data){
             console.log(data);
+            if(data==1)
+            {
+                alert("product added")
+                window.location.href="../admin/index.php";
+            }
 
         }
     })
 })
+$(".pro").on('click',function(){
 
+    var id = $(this).data('id');
+    var name = $(this).data('name');
+    var ap = $(this).data('ap');
+    var mp = $(this).data('mp');
+    var sku = $(this).data('sku');
+    $("#get").html(id);
+    
+    console.log(id,name,ap,mp,sku);
+    $.ajax({
+        type:'POST',
+        url:'admin/adminhelper.php',
+        data:{'pd_id':id,'name':name,'ap':ap,'mp':mp,'sku':sku},
+        
+        success:function(data){
+            console.log(data);
+            window.location.href="cart.php";
+        }
+    })
+   
+});
+
+$("#pack").on('click',function(){
+    var getid=$("#get").text();
+    var pack = $("#select").val();
+    // console.log(pack);
+    // console.log(getid);
+    
+    // console.log(id);
+    $.ajax({
+        type:'POST',
+        url:'admin/adminhelper.php',
+        data:{'p_id':getid,'pack':pack,'action':'pack'},
+        
+        success:function(data){
+            console.log(data);
+        }
+    })
+});
 })

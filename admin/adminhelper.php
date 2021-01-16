@@ -1,11 +1,13 @@
 <?php
+session_start();
+require_once('product.php');
 
-require 'product.php';
-//create product
-
+$_SESSION['cart'][]=[$_POST['pd_id'],$_POST['name'],$_POST['ap'],$_POST['mp'],$_POST['sku']];
+print_r($_SESSION['cart']);
+ 
 $action=$_POST['action'];
-
-
+echo $action;
+$_SESSION['p_id']= $_POST['p_id'];
 $obj=new Product;
 switch($action)
 {
@@ -45,6 +47,11 @@ switch($action)
         $result=$obj->addproduct($productcategory,$productname,$pageurl,$monthlyprice,$annualprice,$sku,$webspace,$bandwidth, $freedomain,$languagetechnology,$mailbox);
         // echo $productcategory.$productname.$productname. $monthlyprice.$annualprice.$sku. $bandwidth.$freedomain.$languagetechnology.$mailbox;
         echo $result;
+    break;
+    case 'pack':
+     
+       
+        
     break;
 }
 

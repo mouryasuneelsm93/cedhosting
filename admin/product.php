@@ -1,6 +1,6 @@
 <?php
-error_reporting(0);
-require('../config.php');
+
+require_once 'config.php' ;
 
 class Product extends dbcon
 {
@@ -92,6 +92,7 @@ class Product extends dbcon
             'languagetechnology'=>$languagetechnology,
             'mailbox'=>$mailbox);
         $desc=json_encode($desc);
+        
         $sql="SELECT id FROM tbl_product WHERE prod_name='$productcategory'";
         $res=$this->con->query($sql);
 
@@ -111,6 +112,7 @@ class Product extends dbcon
                  if($this->con->query($sql1)==true)
                 {
                     $sql2="INSERT into tbl_product_description(prod_id,description,mon_price,annual_price,sku) Values((SELECT id from tbl_product where prod_name='$productname'),'$desc','$monthlyprice','$annualprice','$sku')";
+                    return $this->con->query($sql2);
                     if($this->con->query($sql2)==true)
                     {
                         $res= "1";
@@ -119,13 +121,14 @@ class Product extends dbcon
                     {
                         $res= "2";
                     }
+                    
                 }
                  else
                 {
                     $res='0';
                 }
 
-        return $res;
+              
 
     }
     function prod_show() 
@@ -146,6 +149,8 @@ class Product extends dbcon
                 $languagetechnology=$desc->{'languagetechnology'};
                 $mailbox=$desc->{'mailbox'};
                 $data[]=array(
+                    'id'=>$row['prod_parent_id'],
+                    'ids'=>$row['id'],
                     'cname'=>$cate,
                     'name'=>$row['prod_name'],
                     
@@ -165,7 +170,18 @@ class Product extends dbcon
             return 0;
         }
     }
-    
+    public function hosting() 
+    {
+        $sql="SELECT * FROM tbl_product where `prod_available`='1' and `prod_parent_id`=1";
+        $res=$this->con->query($sql);
 
+        if ($res->num_rows > 0) {
+            while ($row=$res->fetch_assoc()) {
+                $this->rows[]=$row;
+            }
+            return $this->rows;
+        }
+        return false; 
+    }
 }
 ?>
