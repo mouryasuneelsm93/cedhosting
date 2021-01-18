@@ -1,4 +1,6 @@
 <?php
+
+
 require "config.php";
 require 'admin/product.php';
 $obj =new Product;
@@ -71,7 +73,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </li>
                                 <li><a href="blog.php">Blog</a></li>
                                 <li><a href="contact.php">Contact</a></li>
-								<li><a href="codes.php"><i class="fas fa-shopping-cart" aria-hidden="true"></i></a></li>
+								<li><a href="cart.php"><i class="fas fa-shopping-cart" aria-hidden="true"><span class="badge badge-primary"><?php if(isset($_SESSION['cart'])) {
+                                    echo $_SESSION['count'];
+                                }?></span></i></a></li>
                                 <li><a href="login.php">Login</a></li>
 							</ul>
 									  

@@ -114,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<li><strong>location</strong> : <img src="images/india.png"></li>
 													</ul>
 													<div class="linux-top">
-												<a type="button"  data-id="<?php echo $value['ids'];?>"
+												<a type="button" data-toggle="modal" data-target="#myModal" data-id="<?php echo $value['ids'];?>"
 												data-name="<?php echo $value['name'];?>"
 												data-mp="<?php echo $value['monthlyprice'];?>"
 												data-ap="<?php echo $value['annualprice'];?>"
@@ -153,11 +153,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <h5 id="name"></h5>
         <!-- Modal body -->
         <div class="modal-body">
-		
+						<ul style="list-style-type:none">
+						<li><h5>Monthly Pack  <span id="mp"></span></h5></li>
+						<li><h5>Annual Pack  <span id="ap"></span></h5></li>
+						</ul>
 						<select class="form-control" id="select">
 						<option value="select">please select pack</option>
-						<option value="Monthly Pack">Monthly Pack</option>
-						<option value="Annualy Pack">Annualy Pack</option>
+						<option value="Monthly Pack">Monthly Pack <span id="mp"></span></option>
+						<option value="Annualy Pack">Annualy Pack<span id="ap"></span></option>
 						</select>
         </div>
         

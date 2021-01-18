@@ -254,36 +254,85 @@ $(".pro").on('click',function(){
     var mp = $(this).data('mp');
     var sku = $(this).data('sku');
     $("#get").html(id);
-    
+    $("#mp").html(mp);
+    $("#ap").html(ap);
     console.log(id,name,ap,mp,sku);
     $.ajax({
         type:'POST',
         url:'admin/adminhelper.php',
-        data:{'pd_id':id,'name':name,'ap':ap,'mp':mp,'sku':sku},
+        data:{'pd_id':id,'name':name,'ap':ap,'mp':mp,'sku':sku,'action':'pro'},
         
         success:function(data){
             console.log(data);
-            window.location.href="cart.php";
+            // window.location.href="cart.php";
         }
     })
    
 });
 
 $("#pack").on('click',function(){
-    var getid=$("#get").text();
+    var mp=$("#mp").text();
+    var ap=$("#ap").text();
     var pack = $("#select").val();
     // console.log(pack);
-    // console.log(getid);
-    
+     console.log(ap);
+     console.log(mp);
     // console.log(id);
     $.ajax({
         type:'POST',
         url:'admin/adminhelper.php',
-        data:{'p_id':getid,'pack':pack,'action':'pack'},
+        data:{'action':'pack','pack':pack,'mp':mp,'ap':ap},
         
         success:function(data){
             console.log(data);
+            // window.location.href="cart.php";
         }
     })
 });
 })
+
+
+paypal.Buttons({
+
+    style:{
+        color:'blue',
+        shape:'pill',
+    },
+    createorder:function(data,action)
+    {
+       
+        return action.order.create({
+            purchase_units:[{
+                amount:{
+                    value:'100'
+                }
+            }]
+        });
+    },
+    onApprove:function(data,action){
+        return action.order.capture().then(function(details){
+            // console.log(details);
+            //window.location.href="success.php";
+            $.ajax({
+                type:'POST',
+                url:'admin/adminhelper.php',
+                data:{'details':details},
+                success:function(data){
+                    console.log(data);
+                }
+            })
+            
+        })
+    },
+    onCancel:function(data,action){
+        return action.order.capture().then(function(details){
+            console.log(details);
+           // window.location.href="success.php";
+        })
+    }
+    
+    
+         }).render('#payment');
+    
+    
+

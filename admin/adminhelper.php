@@ -2,12 +2,18 @@
 session_start();
 require_once('product.php');
 
-$_SESSION['cart'][]=[$_POST['pd_id'],$_POST['name'],$_POST['ap'],$_POST['mp'],$_POST['sku']];
-print_r($_SESSION['cart']);
- 
 $action=$_POST['action'];
 echo $action;
-$_SESSION['p_id']= $_POST['p_id'];
+$details=$_POST['details'];
+foreach($details as $key=>$value)
+{
+    echo $value;
+    foreach($value as $key=>$value1)
+    {
+        echo $value1;
+    }
+}
+// print_r($details);
 $obj=new Product;
 switch($action)
 {
@@ -48,11 +54,27 @@ switch($action)
         // echo $productcategory.$productname.$productname. $monthlyprice.$annualprice.$sku. $bandwidth.$freedomain.$languagetechnology.$mailbox;
         echo $result;
     break;
-    case 'pack':
-     
-       
-        
+    case 'pro':       
+        $_SESSION['cart'][]=[$_POST['pd_id'],$_POST['name'],$_POST['ap'],$_POST['mp'],$_POST['sku']];
+        // print_r($_SESSION['cart']);   
     break;
+    case 'pack':
+        $pa=$_POST['pack'];
+        
+        if($pa=="Monthly Pack")
+        {
+            $mp=$_POST['mp'];
+            echo $mp;
+            unset($_SESSION['cart']["mp"]);
+            print_r($_SESSION['cart']);
+        }
+        else
+        {
+            $ap=$_POST['ap'];
+            echo $ap;
+            unset($_SESSION['cart']["ap"]);
+            print_r($_SESSION['cart']);
+        }
 }
 
 

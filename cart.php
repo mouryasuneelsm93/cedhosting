@@ -19,7 +19,7 @@ require_once("header.php")
             </thead>
             <tbody>
                 <?php $a=$_SESSION['cart'];
-                $i=0;
+                $count=0;
                     foreach($a as $key=>$value)
                     {
                         echo "<tr>";
@@ -28,10 +28,11 @@ require_once("header.php")
                             echo "<td>".$value1."</td>";
                        
                         }
-                        $i++;
+                        $count++;
                         echo "<td><button type='button' class='btn btn-danger'>Delete</button></td></tr>";
                     }
-                echo "total request".$i;
+                
+                $_SESSION['count']=$count;
                 ?>
                 
             </tbody>
@@ -39,9 +40,21 @@ require_once("header.php")
     </div>
 
 </div>
+<div class="row">
+                    <div class="col-sm-3">
+
+                   <div id="payment">
+                   </div>
+                    </div>
 </div>
+</div>
+<h1 id="details"></h1>
+<script src="https://www.paypal.com/sdk/js?client-id=AeoPZFf336eGKc_rrixhi1BxDzgkGpPebDvLXoVz6XV5ynHF_nUOIyFQ9wT1_T3OaVq6pFxSjW8a7wFd"></script>
+<script src="ajax.js">
 
 
+
+</script>
 <?php
 require_once("footer.php");
 ?>
