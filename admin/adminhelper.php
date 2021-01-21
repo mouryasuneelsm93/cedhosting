@@ -3,17 +3,8 @@ session_start();
 require_once('product.php');
 
 $action=$_POST['action'];
-echo $action;
-$details=$_POST['details'];
-foreach($details as $key=>$value)
-{
-    echo $value;
-    foreach($value as $key=>$value1)
-    {
-        echo $value1;
-    }
-}
-// print_r($details);
+
+
 $obj=new Product;
 switch($action)
 {
@@ -65,16 +56,39 @@ switch($action)
         {
             $mp=$_POST['mp'];
             echo $mp;
-            unset($_SESSION['cart']["mp"]);
+            // unset($_SESSION['cart']["mp"]);
+            // session_destroy(['cart']["ap"]);
             print_r($_SESSION['cart']);
         }
         else
         {
             $ap=$_POST['ap'];
             echo $ap;
-            unset($_SESSION['cart']["ap"]);
+            unset($_SESSION['cart']["mp"]);
             print_r($_SESSION['cart']);
         }
+    break;
+    case 'pay':
+        $details=$_POST['details'];
+        $payer_id=$details['payer']['payer_id'];
+        $CountryName=$details['purchase_units'][0]['shipping']['address']['country_code'];
+        $Name=$details['purchase_units'][0]['shipping']['name']['full_name'];
+        $pincode=$details['purchase_units'][0]['shipping']['address']['postal_code'];
+        $HouseNo=$details['purchase_units'][0]['shipping']['address']['address_line_1'];
+        $city=$details['purchase_units'][0]['shipping']['address']['admin_area_2'];
+        $state=$details['purchase_units'][0]['shipping']['address']['admin_area_1'];
+        $result=$obj->billinginsert($payer_id,$CountryName,$Name,$pincode,$HouseNo,$city,$state);
+        // echo $result;
+        if($result==1)
+        {
+            session_destroy();
+            echo "1";
+        }
+        else 
+        {
+            echo "0";
+        }
+    break;
 }
 
 

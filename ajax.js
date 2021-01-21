@@ -285,7 +285,7 @@ $("#pack").on('click',function(){
         
         success:function(data){
             console.log(data);
-            // window.location.href="cart.php";
+            window.location.href="cart.php";
         }
     })
 });
@@ -316,9 +316,18 @@ paypal.Buttons({
             $.ajax({
                 type:'POST',
                 url:'admin/adminhelper.php',
-                data:{'details':details},
+                data:{'details':details,'action':'pay'},
                 success:function(data){
                     console.log(data);
+                    if(data==1)
+                    {
+                        
+                        window.location.href="success.php"
+                    }
+                    else
+                    {
+                        alert("something went wrong");
+                    }
                 }
             })
             

@@ -183,5 +183,23 @@ class Product extends dbcon
         }
         return false; 
     }
+
+    function billinginsert($payer_id,$CountryName,$Name,$pincode,$HouseNo,$city,$state)
+    {
+        
+       
+        $sql="INSERT into tbl_user_billing_add(user_id,billing_name,house_no,city,state,country,pincode) Values('$payer_id','$CountryName','$Name','$pincode','$HouseNo','$city','$state')";
+        if($this->con->query($sql)==true)
+        {
+            $res='1';
+        }
+        else
+        {
+            $res='0';
+        }
+        return $res;
+
+    }
+   
 }
 ?>
