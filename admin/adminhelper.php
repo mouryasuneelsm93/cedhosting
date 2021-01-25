@@ -4,7 +4,6 @@ require_once('product.php');
 
 $action=$_POST['action'];
 
-
 $obj=new Product;
 switch($action)
 {
@@ -46,7 +45,14 @@ switch($action)
         echo $result;
     break;
     case 'pro':       
-        $_SESSION['cart'][]=[$_POST['pd_id'],$_POST['name'],$_POST['ap'],$_POST['mp'],$_POST['sku']];
+        $_SESSION['cart'][]=[
+            'id'=>$_POST['pd_id'],
+            'name'=>$_POST['name'],
+            'p'=>'Monthly',
+            'p1'=>'Annually',
+            'ap'=>$_POST['ap'],
+            'mp'=>$_POST['mp'],
+            'sku'=>$_POST['sku']];
         // print_r($_SESSION['cart']);   
     break;
     case 'pack':
@@ -55,16 +61,63 @@ switch($action)
         if($pa=="Monthly Pack")
         {
             $mp=$_POST['mp'];
-            echo $mp;
-            // unset($_SESSION['cart']["mp"]);
-            // session_destroy(['cart']["ap"]);
+            foreach($_SESSION['cart'] as $key=>$value)
+            {  
+                $k= $key;
+                foreach($value as $key=>$value1)
+                {
+                    echo $key;
+                    if($key=="mp")
+                    {
+                        foreach($_SESSION['cart'] as $key=>$value3)
+                        {
+                            foreach($value3 as $key=>$value4)
+                            {
+                                if($key=='mp')
+                                {
+                                    unset($_SESSION['cart'][$k]['p1']);
+                                    unset($_SESSION['cart'][$k]['ap']);
+                                }
+                            }
+                        }
+                        // echo $value1;
+                    }
+                   
+                }
+                $k++;
+            }
+          
             print_r($_SESSION['cart']);
         }
         else
         {
             $ap=$_POST['ap'];
-            echo $ap;
-            unset($_SESSION['cart']["mp"]);
+            foreach($_SESSION['cart'] as $key=>$value)
+            {  
+                $k= $key;
+                foreach($value as $key=>$value1)
+                {
+                    echo $key;
+                    if($key=="ap")
+                    {
+                        foreach($_SESSION['cart'] as $key=>$value3)
+                        {
+                            foreach($value3 as $key=>$value4)
+                            {
+                                if($key=='ap')
+                                {
+                                    unset($_SESSION['cart'][$k]['p']);
+                                    unset($_SESSION['cart'][$k]['mp']);
+                                }
+                            }
+                        }
+                        // echo $value1;
+                    }
+                   
+                }
+                $k++;
+            }
+            
             print_r($_SESSION['cart']);
         }
     break;
@@ -88,6 +141,26 @@ switch($action)
         {
             echo "0";
         }
+    break;
+    case 'shipping':
+        $hno=$_POST['h_no'];
+        $lm=$_POST['l_mark'];
+        $city=$_POST['city'];
+        $state=$_POST['state'];
+        $country=$_POST['country'];
+        $pcode=$_POST['p_code'];
+        echo "$hno , $lm <br> $city ,$pcode<br> $state ,<br> $country.";
+    break;
+    case 'dele':
+        $id1=$_POST['id'];
+        foreach($id1 as $key=>$value)
+        {
+            
+            $id=$value;
+        }
+        echo $id;
+
+        unset($_SESSION['cart'][$id]);
     break;
 }
 

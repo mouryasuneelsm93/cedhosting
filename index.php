@@ -1,19 +1,24 @@
+
+<?php
+session_start();
+error_reporting(0);
+if(isset($_SESSION['cart']))
+{
+	header("location:payment.php");
+}
+
+?>	
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Planet Hosting Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-
 </head>
 <body>
-    <?php include "header.php";?>
+	<?php include "header.php";	?>
+	
     	<!---banner--->
 		<div class="banner">
 			<div class="container">

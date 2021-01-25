@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
 require "config.php";
 require 'admin/product.php';
@@ -17,25 +18,19 @@ $result=$obj->hosting();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Planet Hosting Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
+
 <!---fonts-->
 <link href='//fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!---fonts-->
-
-
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-<link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-  <script src="ajax.js"></script>
+
+<script src="ajax.js"></script>
 </head>
 <body>
-	
-	
        <div class="header">
 			<div class="container">
 				<nav class="navbar navbar-default">
@@ -74,9 +69,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li><a href="blog.php">Blog</a></li>
                                 <li><a href="contact.php">Contact</a></li>
 								<li><a href="cart.php"><i class="fas fa-shopping-cart" aria-hidden="true"><span class="badge badge-primary"><?php if(isset($_SESSION['cart'])) {
-                                    echo $_SESSION['count'];
+                                    echo count($_SESSION['cart']);
                                 }?></span></i></a></li>
-                                <li><a href="login.php">Login</a></li>
+								<?php if(!isset($_SESSION['user'])):?>
+                                <?php echo '<li><a href="login.php">Login</a></li>';?>
+								<?php endif;?>
+								<?php if(isset($_SESSION['user'])):?>
+									<li class="dropdown">
+                                <?php echo '<a href="" class="dropdown-toggle" data-toggle="dropdown"> '.$_SESSION['user'].'</a>';?>
+								
+								<ul class="dropdown-menu"><li>
+								<?php echo '<a href="">Dashboard</a></li><li><a href="logout.php">Logout</a>';?>
+								</li></ul></li>
+								<?php endif;?>
+	
+  </div>
 							</ul>
 									  
 						</div><!-- /.navbar-collapse -->

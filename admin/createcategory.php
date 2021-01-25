@@ -103,7 +103,7 @@
               include("product.php");
               $obj=new Product;
               $result=$obj->show();
-             
+              $link="";
               foreach($result as $key=>$value)
               {
                 
@@ -221,3 +221,8 @@
 </body>
 
 </html>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+  
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>

@@ -282,66 +282,120 @@ $("#pack").on('click',function(){
         type:'POST',
         url:'admin/adminhelper.php',
         data:{'action':'pack','pack':pack,'mp':mp,'ap':ap},
-        
         success:function(data){
             console.log(data);
             window.location.href="cart.php";
         }
     })
 });
+
+$("#details").submit(function(e){
+    e.preventDefault();
+    $(".p1").show();
+    var h_no=$("#h_no").val();
+    var l_mark=$("#l_mark").val();
+    var city=$("#city").val();
+    var state=$("#state").val();
+    var country=$("#country").val();
+    var p_code=$("#p_code").val();
+    console.log(h_no,"\n",l_mark,"\n",city,"\n",state,"\n",country,"\n",p_code);
+    // window.location.href="pay.php";
+    $.ajax({
+        type:'POST',
+        url:'admin/adminhelper.php',
+        data:$(this).serialize()+"&action=shipping",
+        success:function(data){
+            $("#details").hide();
+          
+            $(".shipping_data").html(data);
+            console.log(data);
+            
+        }
+    })
+
+})
+$(".sdelete").on('click',function(){
+
+  var id=$(this).data(id);
+  
+
+    console.log(id);
+    var result=confirm("are you sure you want to delete");
+    if(result==true)
+    {
+    $.ajax({
+        type:'POST',
+        url:'admin/adminhelper.php',
+        data:{'id':id,'action':'dele'},
+        success:function(data)
+        {
+            console.log(data);
+            location.reload();
+        }
+    })
+    }
+    else
+    {
+        
+       
+    }
+
+})
+
 })
 
 
-paypal.Buttons({
+// paypal.Buttons({
 
-    style:{
-        color:'blue',
-        shape:'pill',
-    },
-    createorder:function(data,action)
-    {
+//     style:{
+//         color:'blue',
+//         shape:'pill',
+//     },
+//     createorder:function(data,action)
+//     {
        
-        return action.order.create({
-            purchase_units:[{
-                amount:{
-                    value:'100'
-                }
-            }]
-        });
-    },
-    onApprove:function(data,action){
-        return action.order.capture().then(function(details){
-            // console.log(details);
-            //window.location.href="success.php";
-            $.ajax({
-                type:'POST',
-                url:'admin/adminhelper.php',
-                data:{'details':details,'action':'pay'},
-                success:function(data){
-                    console.log(data);
-                    if(data==1)
-                    {
+//         return action.order.create({
+//             purchase_units:[{
+//                 amount:{
+//                     value:'100'
+//                 }
+//             }]
+//         });
+//     },
+//     onApprove:function(data,action){
+//         return action.order.capture().then(function(details){
+//             // console.log(details);
+//             //window.location.href="success.php";
+//             $.ajax({
+//                 type:'POST',
+//                 url:'admin/adminhelper.php',
+//                 data:{'details':details,'action':'pay'},
+//                 success:function(data){
+//                     console.log(data);
+//                     if(data==1)
+//                     {
                         
-                        window.location.href="success.php"
-                    }
-                    else
-                    {
-                        alert("something went wrong");
-                    }
-                }
-            })
+//                         window.location.href="success.php"
+//                     }
+//                     else
+//                     {
+//                         alert("something went wrong");
+//                     }
+//                 }
+//             })
             
-        })
-    },
-    onCancel:function(data,action){
-        return action.order.capture().then(function(details){
-            console.log(details);
-           // window.location.href="success.php";
-        })
-    }
+//         })
+//     },
+//     onCancel:function(data,action){
+//         return action.order.capture().then(function(details){
+//             console.log(details);
+//            // window.location.href="success.php";
+//         })
+//     }
     
     
-         }).render('#payment');
+//          }).render('#payment');
+    
     
     
 

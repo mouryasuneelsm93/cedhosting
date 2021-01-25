@@ -50,6 +50,8 @@
         <table class="table table-striped" id="myTable">
         <thead class="bg-info">
           <tr>
+          <th>Parent_id</th>
+                <th>Product_id</th>
           <th>Product Category Name</th>
                 <th>Product Name</th>
                 <th>Product URL</th>
@@ -69,6 +71,8 @@
           <?php
               include("product.php");
               $obj=new Product;
+              $name="";
+              $link="";
               $result=$obj->prod_show();
             
               foreach($result as $key=>$value)

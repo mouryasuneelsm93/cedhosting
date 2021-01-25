@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+if(!isset($_SESSION['admin']))
+{
+  header('location:../login.php');
+}
 ?>
 
 
@@ -467,9 +471,9 @@ session_start();
                 </a>
                 <div class="dropdown-divider"></div>
                 <?php if(empty($_SESSION['admindata'])) :?>
-                <a href="../login.php" class="dropdown-item">
+                <a href="../logout.php" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
-                 <span>Login</span>
+                 <span>Logout</span>
                 </a>
                 <?php endif;?>
                 <?php if(!empty($_SESSION['admindata'])) :?>
